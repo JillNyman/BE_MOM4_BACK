@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require("./routes/authRoutes");
 const jwt = require("jsonwebtoken");
+const cors = require('cors');
 require('dotenv').config;
 
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 3550;
 app.use(bodyParser.json());
 
