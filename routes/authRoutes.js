@@ -28,7 +28,7 @@ router.post("/register", async(req, res) =>{
 
         //Hash password 
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        //Check if user already exists
+        
 
         //Correct - save user
         const sql = `INSERT INTO users(username, password) VALUES(?, ?)`;
