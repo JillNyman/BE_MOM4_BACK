@@ -18,7 +18,8 @@ const db = new sqlite3.Database(process.env.DATABASE);
 //Add new user
 router.post("/register", async(req, res) =>{
     try{
-        const {username, password} = req.body;
+        let username = req.body.username;
+        let password = req.body.password;
 
         //validate input
         if(!username || !password) {
