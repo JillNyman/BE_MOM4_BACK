@@ -1,17 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const authRoutes = require("./routes/authRoutes");
+const authRoutes = require("./routes/authRoutes"); //<--
 const jwt = require("jsonwebtoken");
 const cors = require('cors');
 require('dotenv').config;
 
 const app = express();
 app.use(cors());
-const port = process.env.PORT || 3550;
+const port = process.env.PORT || 3552;
 app.use(bodyParser.json());
 
 //Routes
 app.use("/api", authRoutes);
+
 
 //Protected routes
 app.get("/api/protected", authenticateToken, (req, res) => {

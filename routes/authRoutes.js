@@ -1,6 +1,5 @@
 //Routes för autentisering
 
-
 const express = require('express');
 const router = express.Router();
 const sqlite3 = require("sqlite3").verbose();
@@ -9,11 +8,8 @@ const jwt = require("jsonwebtoken");
 const cors = require('cors');
 require("dotenv").config();
 
-
 //Connect to database
 const db = new sqlite3.Database(process.env.DATABASE);
-
-
 
 //Add new user
 router.post("/register", async(req, res) =>{
@@ -27,8 +23,7 @@ router.post("/register", async(req, res) =>{
         }
 
         //Hash password 
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);        
 
         //Correct - save user
         const sql = `INSERT INTO users(username, password) VALUES(?, ?)`;
@@ -36,15 +31,13 @@ router.post("/register", async(req, res) =>{
             if(err){
                 res.status(400).json({ message: "Error creating user"});
             } else {
-                res.status(201).json({message: "User created"});
+                res.status(201).json({message: "User created: ", username, password});
             }
-        });
-        
+        });        
 
     } catch (error) {
         res.status(500).json({error: "Server error"});
-    }
-    
+    }    
 });
 
 //login user
